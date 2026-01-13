@@ -10,6 +10,10 @@ set(SFML_STATIC_LIBRARIES ON)
 
 find_package(SFML 3 CONFIG REQUIRED COMPONENTS Graphics)
 
-add_executable(app main.cpp)
+file(GLOB_RECURSE SRC_FILES src/*.cpp)
+
+add_executable(app ${SRC_FILES})
+
+target_include_directories(app PRIVATE include)
 
 target_link_libraries(app PRIVATE SFML::Graphics)
