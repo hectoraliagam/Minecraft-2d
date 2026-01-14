@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "World.hpp"
+#include "Player.hpp"
 
 class Game
 {
@@ -11,10 +12,13 @@ public:
 
 private:
   void processEvents();
-  void update();
+  void update(float dt);
   void render();
 
 private:
   sf::RenderWindow window;
+  sf::Clock clock;
+
   World world;
+  Player player;
 };
