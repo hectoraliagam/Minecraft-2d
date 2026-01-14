@@ -32,6 +32,24 @@ void World::update()
 {
 }
 
+bool World::checkGroundCollision(const sf::FloatRect &playerBounds, float &groundY) const
+{
+  for (const auto &tile : tiles)
+  {
+    if (tile.getFillColor() == sf::Color::Transparent)
+    {
+      continue;
+    }
+
+    if (tile.getGlobalBounds().findIntersection(playerBounds))
+    {
+      groundY = tile.getPosition().y;
+      return true;
+    }
+  }
+  return false;
+}
+
 void World::draw(sf::RenderTarget &target)
 {
   for (const auto &tile : tiles)

@@ -9,7 +9,9 @@ public:
   World();
 
   void update();
-  void draw(sf::RenderTarget&target);
+  void draw(sf::RenderTarget &target);
+
+  bool checkGroundCollision(const sf::FloatRect &playerBounds, float &groundY) const;
 
 private:
   static constexpr unsigned TILE_SIZE = 32;
