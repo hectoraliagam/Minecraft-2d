@@ -2,21 +2,23 @@
 
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include "Block.hpp"
 
 class World
 {
 public:
+  static constexpr unsigned TILE_SIZE = 32;
+  static constexpr unsigned WIDTH = 40;
+  static constexpr unsigned HEIGHT = 20;
+
   World();
 
-  void update();
-  void draw(sf::RenderTarget &target);
-
+  void draw(sf::RenderTarget &target) const;
   bool checkGroundCollision(const sf::FloatRect &playerBounds, float &groundY) const;
 
 private:
-  static constexpr unsigned TILE_SIZE = 32;
-  static constexpr unsigned WIDTH = 30;
-  static constexpr unsigned HEIGHT = 17;
+  std::vector<BlockType> blocks;
 
-  std::vector<sf::RectangleShape> tiles;
+  BlockType getBlock(unsigned x, unsigned y) const;
+  bool isSolid(BlockType type) const;
 };
